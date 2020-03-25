@@ -43,5 +43,8 @@ matrix.map <- function(x) {
     if (comparison[i, 1] > 1) X[i, comparison[i, 1] - 1]  <- -1
     if (comparison[i, 2] > 1) X[i, comparison[i, 2] - 1]  <- 1
   }
+  
+  
   return(X)
-}
+
+  }
