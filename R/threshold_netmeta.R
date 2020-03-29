@@ -1,7 +1,7 @@
 #####   function to run threshold analysis                    #####
 ####    arguments:  nma, object of class netmeta
-####                nma.type (default "random"), if random of fixed effects
-####                        used in original analysis
+####                nma.type (default "random"), character giving type (random of fixed effects)
+####                        used in original nma analysis
 ####                opt.max (default TRUE), optimal decision
 ####                        is the max treat. effect (e.g. for
 ####                        beneficial outcomes) or the minimum
