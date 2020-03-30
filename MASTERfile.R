@@ -18,13 +18,15 @@ data.pw <- pairwise(t, r, n, data = data, studlab = id, sm="OR")
 nma <- netmeta(TE, seTE, treat1, treat2, studlab=studlab, data = data.pw)
 
 # threshold analysis
-thresh <- threshold_netmeta(nma, opt.max = F, mcid = 0.1)
+thresh <- threshold_netmeta(nma, opt.max = F, mcid = 0.02)
 threshplot(thresh, nma, xlab = "Log OR")
 
 
 
 
 # example(s) with network from database
+library(nmadb)
+NMADB <- getNMADB()
 binaryIDs = NMADB[NMADB$Verified=="True" & NMADB$Type.of.Outcome.=="Binary" & NMADB$Format!="iv",]$Record.ID
 continuousIDs = NMADB[NMADB$Verified=="True" & NMADB$Type.of.Outcome.=="Continuous" & NMADB$Format!="iv",]$Record.ID
 
