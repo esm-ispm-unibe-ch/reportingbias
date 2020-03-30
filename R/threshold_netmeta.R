@@ -14,7 +14,6 @@
 ####                mcid (default 0 i.e. max efficacy decision rule),
 ####                        minimally clinical important difference for the decision (if "decision")
 ####                        or for changing the decision (if "change")
-library(nmathresh)
 
 
 threshold_netmeta <- function(nma, nma.type="random", opt.max=T, decision="decision", mcid=0) {
