@@ -3,12 +3,11 @@ rm(list=ls())
 library(devtools)
 install_github("esm-ispm-unibe-ch/reportingbias")
 library(reportingbias)
-library(RCurl)
 library(netmeta)
 library(nmathresh)
 
 # download and store dataset
-data <- read.csv(text=getURL("https://raw.githubusercontent.com/esm-ispm-unibe-ch/reportingbias/master/diabetes.csv"))
+data <- read.csv("https://raw.githubusercontent.com/esm-ispm-unibe-ch/reportingbias/master/diabetes.csv")
 
 
 # pairwise format
