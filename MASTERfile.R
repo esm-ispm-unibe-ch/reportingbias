@@ -7,7 +7,7 @@ library(nmathresh)
 library(netmeta)
 
 # download and store dataset
-data <- read.csv("https://raw.githubusercontent.com/esm-ispm-unibe-ch/reportingbias/master/data/diabetes.csv")
+data <- data("diabetes")
 
 
 # pairwise format
