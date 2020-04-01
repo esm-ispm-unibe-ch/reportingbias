@@ -3,22 +3,25 @@ rm(list=ls())
 library(devtools)
 install_github("esm-ispm-unibe-ch/reportingbias")
 library(reportingbias)
-library(netmeta)
 library(nmathresh)
+library(netmeta)
 
 # download and store dataset
-data <- read.csv("https://raw.githubusercontent.com/esm-ispm-unibe-ch/reportingbias/master/diabetes.csv")
+data <- read.csv("https://raw.githubusercontent.com/esm-ispm-unibe-ch/reportingbias/master/data/diabetes.csv")
 
 
 # pairwise format
 data.pw <- pairwise(t, r, n, data = data, studlab = id, sm="OR")
 
 # run netmeta
-nma <- netmeta(TE, seTE, treat1, treat2, studlab=studlab, data = data.pw)
+nma1 <- netmeta(TE, seTE, treat1, treat2, studlab=studlab, data = data.pw)
 
 # threshold analysis
-thresh <- threshold_netmeta(nma, opt.max = F, mcid = 0.02)
-threshplot(thresh, nma, xlab = "Log OR")
+thresh1 <- threshold_netmeta(nma1, opt.max = F, mcid = 0.05)
+threshplot(thresh1, nma1, xlab = "Log OR", xlim = c(-4,4))
+
+thresh1b <- threshold_netmeta(nma1, opt.max = F, decision = "change", mcid = 0.05)
+threshplot(thresh1b, nma1, xlab = "Log OR", xlim = c(-4,4))
 
 
 
@@ -31,10 +34,11 @@ continuousIDs = NMADB[NMADB$Verified=="True" & NMADB$Type.of.Outcome.=="Continuo
 
 NMADB[NMADB$Record.ID==474842, c("Primary.Outcome", "Harmful.Beneficial.Outcome")]
 
-nma <- runnetmeta(474842)
+nma2 <- runnetmeta(474842)
+summary(nma2)
 
-summary(nma)
+thresh2 <- threshold_netmeta(nma2, opt.max = F, mcid = 0.1)
+threshplot(thresh2, nma2, xlab = "Log OR")
 
-thresh <- threshold_netmeta(nma, opt.max = F, mcid = 0.1)
-
-threshplot(thresh, nma, xlab = "Log OR")
+thresh2b <- threshold_netmeta(nma2, opt.max = F, decision="change", mcid = 0.1)
+threshplot(thresh2b, nma2, xlab = "Log OR")
