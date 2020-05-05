@@ -5,6 +5,7 @@ install_github("esm-ispm-unibe-ch/reportingbias")
 library(reportingbias)
 library(nmathresh)
 library(netmeta)
+library(nmadb)
 
 # download and store dataset
 data <- data("diabetes")
@@ -27,18 +28,19 @@ threshplot(thresh1b, nma1, xlab = "Log OR", xlim = c(-4,4))
 
 
 # example(s) with network from database
-library(nmadb)
-NMADB <- getNMADB()
-binaryIDs = NMADB[NMADB$Verified=="True" & NMADB$Type.of.Outcome.=="Binary" & NMADB$Format!="iv",]$Record.ID
-continuousIDs = NMADB[NMADB$Verified=="True" & NMADB$Type.of.Outcome.=="Continuous" & NMADB$Format!="iv",]$Record.ID
 
-NMADB[NMADB$Record.ID==474842, c("Primary.Outcome", "Harmful.Beneficial.Outcome")]
-
-nma2 <- runnetmeta(474842)
+nma2 <- runnetmeta(482001)
 summary(nma2)
 
 thresh2 <- threshold_netmeta(nma2, opt.max = F, mcid = 0.1)
-threshplot(thresh2, nma2, xlab = "Log OR")
+threshplot(thresh2, nma2)
 
 thresh2b <- threshold_netmeta(nma2, opt.max = F, decision="change", mcid = 0.1)
-threshplot(thresh2b, nma2, xlab = "Log OR")
+threshplot(thresh2b, nma2)
+
+# save funnel plots in pdf file
+pdf("funnel plots.pdf")
+
+fp1 <- nmafunnel(nma2)
+
+dev.off()
