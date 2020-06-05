@@ -46,7 +46,6 @@ nmafunnel <- function(nma, small.values="good") {
           }
           else {
             ma <- metagen(nma$TE,nma$seTE,subset = nma$treat1==rownames(t)[i] & nma$treat2==colnames(t)[j], sm=sm)
-
             funnel(ma, contour = c(0.9, 0.95, 0.99), col.contour = c("darkred", "red", "lightcoral"),
                    cex=1.5, col="darkblue", bg="blue", cex.lab=1.2, xlab = paste(ma$sm, "effect reported as", rownames(t)[i], "-", colnames(t)[j]))
             legend("bottomleft", c("0.1 > p > 0.05", "0.05 > p > 0.01", "< 0.01"), fill = c("darkred", "red", "lightcoral"), cex=1.5)

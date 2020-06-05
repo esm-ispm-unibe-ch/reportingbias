@@ -33,7 +33,7 @@ nma2 <- runnetmeta(482001)
 summary(nma2)
 
 thresh2 <- threshold_netmeta(nma2, opt.max = F, mcid = 0.1)
-threshplot(thresh2, nma2)
+threshplot(thresh2, nma2, xlab = "Log RR", xlim = c(-4,4))
 
 thresh2b <- threshold_netmeta(nma2, opt.max = F, decision="change", mcid = 0.1)
 threshplot(thresh2b, nma2)
