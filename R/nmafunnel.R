@@ -9,7 +9,7 @@ nmafunnel <- function(nma, small.values="good") {
   t <- nma$A.matrix
   comp.10 <- sum(t[upper.tri(t)]>9)
   if(comp.10==0) {
-    stop("There are no comparisons with at least 10 studies")
+    print("There are no comparisons with at least 10 studies")
   }
   else {
     print(paste("There are ", comp.10, "comparisons with at least 10 studies"))

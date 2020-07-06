@@ -8,7 +8,7 @@ library(netmeta)
 library(nmadb)
 
 # download and store dataset
-data <- data("diabetes")
+data <- diabetes
 
 
 # pairwise format
